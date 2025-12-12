@@ -1,0 +1,28 @@
+{
+  "name": "node-red-contrib-gyazo-api",
+  "version": "0.0.1",
+  "description": "Node-RED nodes for Gyazo API",
+  "main": "nodes/get/get.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n0bisuke/node-red-contrib-gyazo-api.git"
+  },
+  "scripts": {
+    "deploy": "git add -A && git commit -m 'update' && git push origin main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "nodes": {
+      "gyazo-get": "./nodes/get/get.js"
+    }
+  },
+  "keywords": [
+    "node-red",
+    "gyazo",
+    "upload"
+  ],
+  "author": "n0bisuke",
+  "license": "Apache 2.0",
+  "dependencies": {
+  }
+}

@@ -1,0 +1,54 @@
+<script>
+    RED.nodes.registerType('gyazo-get',{
+        category: 'Gyazo',
+        color: '#85B9FF',
+        defaults: {
+            name: {value:""},
+        },
+        credentials: {
+            GyazoAccessToken: {type:"password"}, //共通のgyazoConfigを使う
+            // gyazoConfig: {value: "", type:"gyazoConfig"}, //共通のgyazoConfigを使う
+        },
+        inputs:1,
+        outputs:1,
+        icon: "watch.svg",
+        align: "right",
+        label: function() {
+            return this.name||"Gyazo Image Get";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="gyazo-get">
+    <!-- 名前 -->
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> <span data-i18n="gyazo-get.label.name">名前</span></label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <!-- Gyazo Config -->
+    <!-- <div class="form-row">
+        <label for="node-input-gyazoConfig">
+            <i class="fa fa-tag"></i>
+            Gyazo 
+        </label> 
+        <input type="text" id="node-input-gyazoConfig" placeholder="Gyazo Config">
+    </div> -->
+
+    <div class="form-row">
+        <label for="node-input-GyazoAccessToken"><i class="icon-tag"></i> <span>AccessToken</span></label>
+        <input type="password" id="node-input-GyazoAccessToken" placeholder="Gyazo AccessToken">
+    </div>
+
+    <!-- <div class="form-row">
+        <label for="node-input-AccessToken">
+            <i class="icon-tag"></i>
+            <span data-i18n="gyazo-get.label.accessToken">チャンネルアクセストークン</span>
+        </label>
+        <input type="password" id="node-input-AccessToken" placeholder="LINE gyazo-get AccessToken">
+    </div> -->
+</script>
+
+<script type="text/x-red" data-help-name="gyazo-get">
+    <p>Returns the current month's message quota gyazo-gets.</p>
+</script>
