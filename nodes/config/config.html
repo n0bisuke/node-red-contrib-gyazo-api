@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    RED.nodes.registerType('gyazo-config', {
+        category: 'config',
+        defaults: {
+            name: { value: "" }
+        },
+        credentials: {
+            accessToken: { type: "password" }
+        },
+        label: function() {
+            return this.name || "Gyazo Token";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="gyazo-config">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> 名前</label>
+        <input type="text" id="node-config-input-name" placeholder="例: 開発用アカウント">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-accessToken"><i class="fa fa-key"></i> AccessToken</label>
+        <input type="password" id="node-config-input-accessToken">
+    </div>
+</script>

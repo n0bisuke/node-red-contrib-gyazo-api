@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-gyazo-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node-RED nodes for Gyazo API",
   "main": "nodes/get/get.js",
   "repository": {
@@ -13,7 +13,9 @@
   },
   "node-red": {
     "nodes": {
-      "gyazo-get": "./nodes/get/get.js"
+      "gyazo-get": "./nodes/get/get.js",
+      "gyazo-config": "./nodes/config/config.js",
+      "gyazo-upload": "nodes/upload/upload.js"
     }
   },
   "keywords": [
