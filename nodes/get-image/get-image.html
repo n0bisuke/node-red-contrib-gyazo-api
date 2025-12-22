@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('gyazo-upload', {
+    RED.nodes.registerType('gyazo-get-image', {
         category: 'Gyazo',
         color: '#85B9FF',
         defaults: {
@@ -8,16 +8,16 @@
         },
         inputs: 1,
         outputs: 1,
-        icon: "upload.svg",
-        align: "left",
+        icon: "watch.svg",
+        align: "right",
         label: function() {
-            return this.name || "Gyazo Upload";
+            return this.name || "Gyazo Get Image";
         },
-        paletteLabel: "Upload"
+        paletteLabel: "Get Image"
     });
 </script>
 
-<script type="text/html" data-template-name="gyazo-upload">
+<script type="text/html" data-template-name="gyazo-get-image">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> 名前</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -28,6 +28,7 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="gyazo-upload">
-    <p>msg.payload に渡されたバイナリデータ（Buffer）をGyazoにアップロードします。</p>
+<script type="text/html" data-help-name="gyazo-get-image">
+    <p>Gyazo APIから特定の画像情報を取得します。事前に設定ノードでトークンを登録してください。</p>
+    <p>msg.payload.image_idで取得する画像のIDを指定してください。</p>
 </script>

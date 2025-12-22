@@ -1,9 +1,7 @@
 module.exports = function(RED) {
     'use strict';
-    // 安定性のために global fetch を使用 (Node.js v18+)
-    // もし古いNode.jsなら 'node-fetch' 等が必要ですが、エラー内容から標準fetchと推測します
 
-    function GyazoGetNode(config) {
+    function GyazoGetImageNode(config) {
         const node = this;
         RED.nodes.createNode(node, config);
 
@@ -17,17 +15,22 @@ module.exports = function(RED) {
             }
 
             const GYAZO_TOKEN = configNode.accessToken;
-            const ENDPOINT = 'https://api.gyazo.com/api/images';
+            const image_id = msg.payload?.image_id;
 
-            // 1. タイムアウト処理の追加 (5秒でタイムアウト)
+            if (!image_id) {
+                node.error("image_id is required in msg.payload.image_id");
+                done();
+                return;
+            }
+
+            const ENDPOINT = `https://api.gyazo.com/api/images/${image_id}`;
+
             const controller = new AbortController();
             const timeout = setTimeout(() => controller.abort(), 5000);
 
             try {
                 const params = new URLSearchParams({
-                    query: 'cat', // ここをmsg.payloadから取れるようにすると便利です
-                    page: '1',
-                    per: '10'
+                    access_token: GYAZO_TOKEN
                 });
 
                 const res = await fetch(`${ENDPOINT}?${params}`, {
@@ -40,7 +43,6 @@ module.exports = function(RED) {
                 });
 
                 if (!res.ok) {
-                    // 429 Too Many Requests などのエラーを具体的に出す
                     const errorBody = await res.text();
                     throw new Error(`HTTP ${res.status}: ${errorBody}`);
                 }
@@ -50,7 +52,6 @@ module.exports = function(RED) {
                 send(msg);
                 done();
             } catch (error) {
-                // 2. エラーの詳細ログ出力
                 if (error.name === 'AbortError') {
                     node.error("Request timeout", msg);
                 } else {
@@ -62,5 +63,5 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("gyazo-get", GyazoGetNode);
+    RED.nodes.registerType("gyazo-get-image", GyazoGetImageNode);
 }

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('gyazo-get', {
+    RED.nodes.registerType('gyazo-get-list', {
         category: 'Gyazo',
         color: '#85B9FF',
         defaults: {
@@ -11,12 +11,13 @@
         icon: "watch.svg",
         align: "right",
         label: function() {
-            return this.name || "Gyazo Image Get";
-        }
+            return this.name || "Gyazo Get List";
+        },
+        paletteLabel: "Get List"
     });
 </script>
 
-<script type="text/html" data-template-name="gyazo-get">
+<script type="text/html" data-template-name="gyazo-get-list">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> 名前</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -27,6 +28,7 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="gyazo-get">
+<script type="text/html" data-help-name="gyazo-get-list">
     <p>Gyazo APIから画像一覧を取得します。事前に設定ノードでトークンを登録してください。</p>
+    <p>msg.payload.pageとmsg.payload.per_pageでページネーションを指定できます（デフォルト: page=1, per_page=20）。</p>
 </script>
